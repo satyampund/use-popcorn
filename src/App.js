@@ -50,10 +50,15 @@ const tempWatchedData = [
 ];
 
 export default function App() {
+  const [movies, setMovies] = useState(tempMovieData);
   return (
     <>
-      <NavBar />
-      <Main tempMovieData={tempMovieData} tempWatchedData={tempWatchedData} />
+      <NavBar movies={movies}>
+        <p className="num-results">
+          Found <strong>{movies.length}</strong> results
+        </p>
+      </NavBar>
+      <Main tempWatchedData={tempWatchedData} movies={movies} />
     </>
   );
 }

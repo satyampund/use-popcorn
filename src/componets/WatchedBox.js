@@ -3,7 +3,6 @@ import WatchedSummary from './WatchedSummary';
 import WatchedList from './WatchedList';
 
 const WatchedBox = ({ tempWatchedData }) => {
-  const [watched, setWatched] = useState(tempWatchedData);
   const [isOpen2, setIsOpen2] = useState(true);
 
   return (

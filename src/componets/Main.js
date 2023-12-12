@@ -2,11 +2,11 @@ import React from 'react';
 import ListBox from './ListBox';
 import WatchedBox from './WatchedBox';
 
-const Main = ({ tempMovieData, tempWatchedData }) => {
+const Main = ({ tempWatchedData, movies }) => {
   return (
     <>
       <main className="main">
-        <ListBox tempMovieData={tempMovieData} />
+        <ListBox movies={movies} />
         <WatchedBox tempWatchedData={tempWatchedData} />
       </main>
     </>

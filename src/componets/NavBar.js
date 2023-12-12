@@ -2,15 +2,13 @@ import React from 'react';
 import Search from './Search';
 import Logo from './Logo';
 
-const NavBar = () => {
+const NavBar = ({ children }) => {
   return (
     <>
       <nav className="nav-bar">
         <Logo logo="🍿" name="usePopcorn" />
         <Search />
-        <p className="num-results">
-          Found <strong>X</strong> results
-        </p>
+        {children}
       </nav>
     </>
   );
