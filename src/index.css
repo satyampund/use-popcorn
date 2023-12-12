@@ -18,6 +18,10 @@
 
 html {
   font-size: 62.5%;
+  ::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+  }
 }
 
 body {
