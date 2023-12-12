@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ListBox = ({ children }) => {
+const ListBox = ({ element }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -9,7 +9,7 @@ const ListBox = ({ children }) => {
         <button className="btn-toggle" onClick={() => setIsOpen((open) => !open)}>
           {isOpen ? '–' : '+'}
         </button>
-        {isOpen && children}
+        {isOpen && element}
       </div>
     </>
   );
