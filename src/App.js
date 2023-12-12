@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import NavBar from './componets/NavBar';
 import Main from './componets/Main';
+import ListBox from './componets/ListBox';
+import MovieList from './componets/MovieList';
+import WatchedSummary from './componets/WatchedSummary';
+import WatchedList from './componets/WatchedList';
 
 const tempMovieData = [
   {
@@ -58,7 +62,15 @@ export default function App() {
           Found <strong>{movies.length}</strong> results
         </p>
       </NavBar>
-      <Main tempWatchedData={tempWatchedData} movies={movies} />
+      <Main>
+        <ListBox>
+          <MovieList movies={movies} />
+        </ListBox>
+        <ListBox>
+          <WatchedSummary watched={tempWatchedData} />
+          <WatchedList watched={tempWatchedData} />
+        </ListBox>
+      </Main>
     </>
   );
 }

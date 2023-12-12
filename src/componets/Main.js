@@ -1,14 +1,9 @@
 import React from 'react';
-import ListBox from './ListBox';
-import WatchedBox from './WatchedBox';
 
-const Main = ({ tempWatchedData, movies }) => {
+const Main = ({ children }) => {
   return (
     <>
-      <main className="main">
-        <ListBox movies={movies} />
-        <WatchedBox tempWatchedData={tempWatchedData} />
-      </main>
+      <main className="main">{children}</main>
     </>
   );
 };
