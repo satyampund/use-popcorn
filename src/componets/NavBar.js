@@ -1,5 +1,4 @@
 import React from 'react';
-import Search from './Search';
 import Logo from './Logo';
 
 const NavBar = ({ children }) => {
@@ -7,7 +6,6 @@ const NavBar = ({ children }) => {
     <>
       <nav className="nav-bar">
         <Logo logo="🍿" name="usePopcorn" />
-        <Search />
         {children}
       </nav>
     </>

@@ -5,6 +5,8 @@ import ListBox from './componets/ListBox';
 import MovieList from './componets/MovieList';
 import WatchedSummary from './componets/WatchedSummary';
 import WatchedList from './componets/WatchedList';
+import Search from './componets/Search';
+import NumResults from './componets/NumResults';
 
 const tempMovieData = [
   {
@@ -55,20 +57,21 @@ const tempWatchedData = [
 
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatched] = useState(tempWatchedData);
+
   return (
     <>
-      <NavBar movies={movies}>
-        <p className="num-results">
-          Found <strong>{movies.length}</strong> results
-        </p>
+      <NavBar>
+        <Search />
+        <NumResults movies={movies} />
       </NavBar>
       <Main>
         <ListBox>
           <MovieList movies={movies} />
         </ListBox>
         <ListBox>
-          <WatchedSummary watched={tempWatchedData} />
-          <WatchedList watched={tempWatchedData} />
+          <WatchedSummary watched={watched} />
+          <WatchedList watched={watched} />
         </ListBox>
       </Main>
     </>
