@@ -14,12 +14,15 @@ const key = 'f84fc31d';
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchMovies = async () => {
+      setIsLoading(true);
       const res = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${query}`);
       const data = await res.json();
       setMovies(data.Search);
+      setIsLoading(false);
     };
     fetchMovies();
   }, []);
@@ -32,7 +35,7 @@ export default function App() {
       </NavBar>
       <Main>
         <ListBox>
-          <MovieList movies={movies} />
+          {isLoading ? <p className="loader">Loading...</p> : <MovieList movies={movies} />}
         </ListBox>
         <ListBox>
           <WatchedSummary watched={watched} />
