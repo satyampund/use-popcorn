@@ -28,8 +28,6 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     Genre: genre,
   } = movie;
 
-  console.log(movie);
-
   function handleAdd() {
     const newWatchedMovie = {
       imdbID: selectedId,
@@ -54,6 +52,15 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     }
     getMovieDetails();
   }, [selectedId]);
+
+  useEffect(() => {
+    if (!title) return;
+    document.title = `Movie | ${title}`;
+
+    return function () {
+      document.title = 'usePopcorn';
+    };
+  }, [title]);
 
   return (
     <div className="details">
