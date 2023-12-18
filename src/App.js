@@ -8,9 +8,10 @@ import WatchedList from './componets/WatchedList';
 import Search from './componets/Search';
 import NumResults from './componets/NumResults';
 import ErrorMessage from './componets/ErrorMessage';
+import MovieDetails from './componets/MovieDetails';
 
 const tempQuery = 'interstellar';
-const key = 'f84fc31d';
+const key = 'd8be5300';
 
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -18,6 +19,15 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
+  const [selectedId, setSelectedId] = useState(null);
+
+  const handleSelectMovie = (id) => {
+    setSelectedId((selectedId) => (id === selectedId ? null : id));
+  };
+
+  const handleCloseMovie = (id) => {
+    setSelectedId(null);
+  };
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -29,6 +39,7 @@ export default function App() {
           throw new Error('Something went wrong with fetching movies');
         }
         const data = await res.json();
+        console.log(data.Search);
         if (!data.Search) {
           throw new Error('Movie not found');
         }
@@ -59,12 +70,18 @@ export default function App() {
         <ListBox>
           {/* {isLoading ? <p className="loader">Loading...</p> : <MovieList movies={movies} />} */}
           {isLoading && <p className="loader">Loading...</p>}
-          {!isLoading && !error && <MovieList movies={movies} />}
+          {!isLoading && !error && <MovieList movies={movies} onSelectMovie={handleSelectMovie} />}
           {error && <ErrorMessage message={error} />}
         </ListBox>
         <ListBox>
-          <WatchedSummary watched={watched} />
-          <WatchedList watched={watched} />
+          {selectedId ? (
+            <MovieDetails selectedId={selectedId} onCloseMovie={handleCloseMovie} />
+          ) : (
+            <>
+              <WatchedSummary watched={watched} />
+              <WatchedList watched={watched} />
+            </>
+          )}
         </ListBox>
       </Main>
     </>
