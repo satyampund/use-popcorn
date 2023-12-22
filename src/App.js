@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import NavBar from './componets/NavBar';
 import Main from './componets/Main';
 import ListBox from './componets/ListBox';
@@ -11,8 +11,6 @@ import ErrorMessage from './componets/ErrorMessage';
 import MovieDetails from './componets/MovieDetails';
 import { useMovies } from './componets/useMovies';
 import { useLocalStorageState } from './componets/useLocalStorageState';
-
-const tempQuery = 'interstellar';
 
 export default function App() {
   const [query, setQuery] = useState('');
