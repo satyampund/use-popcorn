@@ -10,6 +10,7 @@ import NumResults from './componets/NumResults';
 import ErrorMessage from './componets/ErrorMessage';
 import MovieDetails from './componets/MovieDetails';
 import { useMovies } from './componets/useMovies';
+import { useLocalStorageState } from './componets/useLocalStorageState';
 
 const tempQuery = 'interstellar';
 
@@ -18,10 +19,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const { movies, isLoading, error } = useMovies(query);
 
-  const [watched, setWatched] = useState(function () {
-    const storedValue = localStorage.getItem('watched');
-    return JSON.parse(storedValue);
-  });
+  const [watched, setWatched] = useLocalStorageState([], 'watched');
 
   const handleSelectMovie = (id) => {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -40,10 +38,6 @@ export default function App() {
   const handleDeleteWatched = (id) => {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   };
-
-  useEffect(() => {
-    localStorage.setItem('watched', JSON.stringify(watched));
-  }, [watched]);
 
   return (
     <>
